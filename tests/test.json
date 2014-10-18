@@ -1,0 +1,5 @@
+{
+	"title":"docxstache",
+	"content": "Write a word document with `mustache`, run docxstache, and get a new docx.",
+	"license": "MIT"
+}
