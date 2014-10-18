@@ -6,10 +6,8 @@ import re
 def replace_field(run, field, repl):    
     field_str = "{{" + field + "}}"
     if field_str in run.text:
-        print field_str
-        return re.sub(field_str, repl, run.text)
-    else:
-        return run.text
+        run.text = re.sub(field_str, repl, run.text)
+    return run
 
 def replace_document(doc, kp):
     try:
@@ -17,7 +15,7 @@ def replace_document(doc, kp):
         for paragraph in document.paragraphs:
             for run in paragraph.runs:
                 for key, value in kp.items():
-                    run.text = replace_field(run, key, value)
+                    run = replace_field(run, key, value)
         return document
     except:
         print "Invalid File Name"
