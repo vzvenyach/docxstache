@@ -6,7 +6,10 @@ import re
 def replace_field(run, field, repl):    
     field_str = "{{" + field + "}}"
     if field_str in run.text:
-        run.text = re.sub(field_str, repl, run.text)
+        try:
+            run.text = re.sub(field_str, repl, run.text)
+        except:
+            raise
     return run
 
 def replace_document(doc, kp):
@@ -18,7 +21,8 @@ def replace_document(doc, kp):
                     run = replace_field(run, key, value)
         return document
     except:
-        print "Invalid File Name"
+        raise
+
 
 import sys
 import json
